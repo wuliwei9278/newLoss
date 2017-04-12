@@ -88,7 +88,7 @@ function main()
 	println(length(x1_test[x1_test .<=-5]), " ", length(y_test[y_test.==1]))
 
 	# the model has three parameters, beta0, beta1, beta2
-	Beta = randn(3)
+	Beta = 0.01*randn(3)
 	Gamma = 1.0
 	step_size = 10
 	#println(objetive(y_train, x0_train, x1_train, x2_train, Beta, Gamma))
@@ -99,7 +99,7 @@ function main()
 		for iter = 1:20
 			Beta = Beta_old + step_size * grad
 			new_obj = objetive(y_train, x0_train, x1_train, x2_train, Beta, Gamma)
-			println(i, " Line Search iter ", iter, " Prev Obj ", prev_obj, " New Obj ", new_obj)
+			#println(i, " Line Search iter ", iter, " Prev Obj ", prev_obj, " New Obj ", new_obj)
 			if (new_obj > prev_obj)
 				break
 			else
@@ -118,6 +118,7 @@ function main()
 	recall = K / length(y_test)
 	println(precision)
 	println(recall)
+	print(Beta)
 end
 
 # For one particular simulation
